@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'RPAgentSwiftXCTest'
-    s.version          = '1.10'
+    s.version          = '1.11'
     s.summary          = 'Agent to push test results on Report Portal'
 
     s.description      = <<-DESC
@@ -15,9 +15,6 @@ Pod::Spec.new do |s|
     s.ios.deployment_target = '8.0'
     s.tvos.deployment_target = '9.0'
     s.source_files = 'RPAgentSwiftXCTest/**/*'
-
-    s.dependency 'Alamofire', '~> 4.5.1'
-    s.dependency 'AlamofireObjectMapper', '~> 5.0.0'
 
     s.weak_framework = "XCTest"
     s.pod_target_xcconfig = {
