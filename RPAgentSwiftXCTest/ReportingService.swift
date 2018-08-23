@@ -30,7 +30,8 @@ class ReportingService {
   
   init(configuration: AgentConfiguration) {
     self.configuration = configuration
-    httpClient = HTTPClient(baseURL: configuration.reportPortalURL)
+    let baseURL = configuration.reportPortalURL.appendingPathComponent(configuration.projectName)
+    httpClient = HTTPClient(baseURL: baseURL)
     httpClient.setPlugins([AuthorizationPlugin(token: configuration.portalToken)])
   }
 

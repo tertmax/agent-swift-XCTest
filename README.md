@@ -23,18 +23,20 @@ pod install
 
 Use info.plist file of your test target to specify properties of Report Portal:
 
-* ReportPortalURL - URL to API of report portal (exaple https://report-portal.company.com/api/v1/project).
+* ReportPortalURL - URL to API of report portal (exaple https://report-portal.company.com/api/v1).
 * ReportPortalToken - token for authentication which can be get from RP account settings.
 * ReportPortalLaunchName - name of launch.
 * Principal class - use RPAgentSwiftXCTest.RPListener from RPAgentSwiftXCTest lib. Also you can specify your own Observer which should conform [XCTestObservation](https://developer.apple.com/documentation/xctest/xctestobservation) protocol.
 * PushTestDataToReportPortal - can be used for switch off/on reporting
+* ReportPortalProjectName - project name from Report Portal
 * ReportPortalTags(optinal) - can be used to specify tags, separeted by comma.
 
 Example:
 ![Alt text](https://github.com/SergeVKom/RPAgentSwiftXCTest/blob/master/Screen%20Shot.png)
 
-## Author
+## Authors
 
+DarthRumata, stas.kirichok@windmill.ch (Windmill Smart Solutions)
 SergeVKom, sergvkom@gmail.com
 
 ## License
