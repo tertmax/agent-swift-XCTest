@@ -13,19 +13,26 @@ enum HTTPClientError: Error {
   case noResponse
 }
 
- class HTTPClient: NSObject {
+class HTTPClient {
   
-  let requestTimeout: TimeInterval = 120
-  let utilityQueue = DispatchQueue(label: "com.oxagile.httpclient", qos: .utility)
+  private let baseURL: URL
+  private let requestTimeout: TimeInterval = 120
+  private let utilityQueue = DispatchQueue(label: "com.report_portal_agent.httpclient", qos: .utility)
+  private var plugins: [HTTPClientPlugin] = []
   
-   override init() {
+  init(baseURL: URL) {
+    self.baseURL = baseURL
+    
     URLSession.shared.configuration.timeoutIntervalForRequest = requestTimeout
   }
   
-  func doRequest<T: Decodable>(endPoint: EndPoint, completion: @escaping (_ result: T) -> Void) throws {
-    guard var url = URL(string: endPoint.url) else {
-      throw HTTPClientError.invalidURL
-    }
+  func setPlugins(_ plugins: [HTTPClientPlugin]) {
+    self.plugins = plugins
+  }
+  
+  func callEndPoint<T: Decodable>(_ endPoint: EndPoint, completion: @escaping (_ result: T) -> Void) throws {
+    var url = baseURL.appendingPathComponent(endPoint.relativePath)
+
     if endPoint.encoding == .url {
       var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)!
       let queryItems = endPoint.parameters.map {
@@ -35,7 +42,8 @@ enum HTTPClientError: Error {
       urlComponents.queryItems = queryItems
       url = urlComponents.url!
     }
-    let request = NSMutableURLRequest(url: url)
+
+    var request = URLRequest(url: url)
     request.httpMethod = endPoint.method.rawValue
     request.cachePolicy = .reloadIgnoringCacheData
     request.allHTTPHeaderFields = endPoint.headers
@@ -43,11 +51,14 @@ enum HTTPClientError: Error {
       let data = try JSONSerialization.data(withJSONObject: endPoint.parameters, options: .prettyPrinted)
       request.httpBody = data
     }
-    print(request.description)
+    plugins.forEach { (plugin) in
+      plugin.processRequest(&request)
+    }
+    print(request.url ?? "")
     utilityQueue.async {
       let task = URLSession.shared.dataTask(with: request as URLRequest) { (data: Data?, response: URLResponse?, error: Error?) in
         if let error = error {
-           print(error)
+          print(error)
           return
         }
         
@@ -55,27 +66,25 @@ enum HTTPClientError: Error {
           print("no data")
           return
         }
-        
-        guard let result = try? JSONDecoder().decode(T.self, from: data) else
+        guard
+          let httpResponse = response as? HTTPURLResponse,
+          let result = try? JSONDecoder().decode(T.self, from: data) else
         {
-          print("cannot deserialize data")
+          print("cannot deserialize data: \(String(describing: try? JSONSerialization.jsonObject(with: data, options: []) ))")
           return
         }
         
-        completion(result)
+        if httpResponse.statusCode == 200 || httpResponse.statusCode == 201 {
+          completion(result)
+        } else {
+          print("request failed with code: \(httpResponse.statusCode)")
+        }
       }
       task.resume()
     }
-//    var responseCode = 000
-//    request.responseObject(queue: utilityQueue, keyPath: data.keyPath) { (response: DataResponse<T>) in
-//      switch response.result {
-//      case .success:
-//        completion(response.result.value!)
-//        responseCode = response.response?.statusCode ?? responseCode
-//        print("response: \(responseCode), \(response.result.value!))")
-//      case .failure(let error):
-//        print("Can not do request: \(String(describing: error))")
-//      }
-//    }
   }
+}
+
+protocol HTTPClientPlugin {
+  func processRequest(_ originRequest: inout URLRequest)
 }
