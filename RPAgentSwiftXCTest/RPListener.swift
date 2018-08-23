@@ -11,30 +11,56 @@ import XCTest
 
 public class RPListener: NSObject, XCTestObservation {
   
-  var serviceRP: RPService?
-  let queue = DispatchQueue(label: "com.oxagile.report.portal", qos: .utility)
+  private var reportingService: ReportingService!
+  private let queue = DispatchQueue(label: "com.report_portal.reporting", qos: .utility)
   var bundleProperties: [String: Any]!
   
   public override init() {
     super.init()
+    
+    
     XCTestObservationCenter.shared.addTestObserver(self)
   }
   
-  public func testBundleWillStart(_ testBundle: Bundle) {
-    guard let path = testBundle.path(forResource: "Info", ofType: "plist") else {return }
-    bundleProperties = NSDictionary(contentsOfFile: path) as? [String: Any]
-    guard let pushData = bundleProperties["PushTestDataToReportPortal"] as? Bool else {
-      print("Configure properties for report portal in the Info.plist")
-      return
+  private func readConfiguration(from testBundle: Bundle) -> AgentConfiguration {
+    guard
+      let bundlePath = testBundle.path(forResource: "Info", ofType: "plist"),
+      let bundleProperties = NSDictionary(contentsOfFile: bundlePath) as? [String: Any],
+      let shouldReport = bundleProperties["PushTestDataToReportPortal"] as? Bool,
+      let portalPath = bundleProperties["ReportPortalURL"] as? String,
+      let portalURL = URL(string: portalPath),
+      let projectName = bundleProperties["ReportPortalProjectName"] as? String,
+      let token = bundleProperties["ReportPortalToken"] as? String,
+      let launchName = bundleProperties["ReportPortalLaunchName"] as? String else
+    {
+      fatalError("Configure properties for report portal in the Info.plist")
     }
-    guard pushData else {
+    var tags: [String] = []
+    if let tagString = bundleProperties["ReportPortalTags"] as? String {
+      tags = tagString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).components(separatedBy: ",")
+    }
+    
+    return AgentConfiguration(
+      reportPortalURL: portalURL,
+      projectName: projectName,
+      launchName: launchName,
+      shouldSendReport: shouldReport,
+      portalToken: token,
+      tags: tags
+    )
+  }
+  
+  public func testBundleWillStart(_ testBundle: Bundle) {
+    let configuration = readConfiguration(from: testBundle)
+    
+    guard configuration.shouldSendReport else {
       print("Set 'YES' for 'PushTestDataToReportPortal' property in Info.plist if you want to put data to report portal")
       return
     }
-    serviceRP = RPService()
+    reportingService = ReportingService(configuration: configuration)
     queue.async {
       do {
-        try self.serviceRP!.startLaunch(self.bundleProperties)
+        try self.reportingService.startLaunch()
       } catch let error {
         print(error)
       }
@@ -42,11 +68,10 @@ public class RPListener: NSObject, XCTestObservation {
   }
   
   public func testSuiteWillStart(_ testSuite: XCTestSuite) {
-    guard let service = serviceRP else { return }
     if !testSuite.name.contains("Selected tests"), !testSuite.name.contains(".xctest") {
       queue.async {
         do {
-          try service.startTestCase(testSuite)
+          try self.reportingService.startTestSuite(testSuite)
         } catch let error {
           print(error)
         }
@@ -59,10 +84,9 @@ public class RPListener: NSObject, XCTestObservation {
   }
   
   public func testCaseWillStart(_ testCase: XCTestCase) {
-    guard let service = serviceRP else { return }
     queue.async {
       do {
-        try service.startTest(testCase)
+        try self.reportingService.startTest(testCase)
       } catch let error {
         print(error)
       }
@@ -70,10 +94,9 @@ public class RPListener: NSObject, XCTestObservation {
   }
   
   public func testCase(_ testCase: XCTestCase, didFailWithDescription description: String, inFile filePath: String?, atLine lineNumber: Int) {
-    guard let service = serviceRP else { return }
     queue.async {
       do {
-        try service.reportError(message: "Test '\(String(describing: testCase.name)))' failed on line \(lineNumber), \(description)")
+        try self.reportingService.reportError(message: "Test '\(String(describing: testCase.name)))' failed on line \(lineNumber), \(description)")
       } catch let error {
         print(error)
       }
@@ -81,11 +104,9 @@ public class RPListener: NSObject, XCTestObservation {
   }
   
   public func testCaseDidFinish(_ testCase: XCTestCase) {
-    guard let service = serviceRP else { return }
-    
     queue.async {
       do {
-        try service.finishTest(testCase)
+        try self.reportingService.finishTest(testCase)
       } catch let error {
         print(error)
       }
@@ -93,11 +114,10 @@ public class RPListener: NSObject, XCTestObservation {
   }
   
   public func testSuiteDidFinish(_ testSuite: XCTestSuite) {
-    guard let service = serviceRP else { return }
     if !testSuite.name.contains("Selected tests"), !testSuite.name.contains(".xctest") {
       queue.async {
         do {
-          try  service.finishTestCase()
+          try self.reportingService.finishTestSuite()
         } catch let error {
           print(error)
         }
@@ -106,10 +126,9 @@ public class RPListener: NSObject, XCTestObservation {
   }
   
   public func testBundleDidFinish(_ testBundle: Bundle) {
-    guard let service = serviceRP else { return }
     queue.sync() {
       do {
-        try service.finishLaunch()
+        try self.reportingService.finishLaunch()
       } catch let error {
         print(error)
       }
