@@ -1,17 +1,17 @@
-# RPAgentSwiftXCTest
+# ReportPortalAgent
 
 
-[![Version](https://img.shields.io/cocoapods/v/RPAgentSwiftXCTest.svg?style=flat)](http://cocoapods.org/pods/RPAgentSwiftXCTest)
-[![License](https://img.shields.io/cocoapods/l/RPAgentSwiftXCTest.svg?style=flat)](http://cocoapods.org/pods/RPAgentSwiftXCTest)
-[![Platform](https://img.shields.io/cocoapods/p/RPAgentSwiftXCTest.svg?style=flat)](http://cocoapods.org/pods/RPAgentSwiftXCTest)
+[![Version](https://img.shields.io/cocoapods/v/ReportPortalAgent.svg?style=flat)](http://cocoapods.org/pods/ReportPortalAgent)
+[![License](https://img.shields.io/cocoapods/l/ReportPortalAgent.svg?style=flat)](http://cocoapods.org/pods/ReportPortalAgent)
+[![Platform](https://img.shields.io/cocoapods/p/ReportPortalAgent.svg?style=flat)](http://cocoapods.org/pods/ReportPortalAgent)
 
 ## Installation
 
-RPAgentSwiftXCTest is available through [CocoaPods](http://cocoapods.org). To install
+ReportPortalAgent is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'RPAgentSwiftXCTest'
+pod 'ReportPortalAgent'
 ```
 and install it:
 ```bash
@@ -41,4 +41,4 @@ SergeVKom, sergvkom@gmail.com
 
 ## License
 
-RPAgentSwiftXCTest is available under the MIT license. See the LICENSE file for more info.
+ReportPortalAgent is available under the MIT license. See the LICENSE file for more info.
