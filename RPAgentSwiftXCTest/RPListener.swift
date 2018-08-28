@@ -13,7 +13,6 @@ public class RPListener: NSObject, XCTestObservation {
   
   private var reportingService: ReportingService!
   private let queue = DispatchQueue(label: "com.report_portal.reporting", qos: .utility)
-  var bundleProperties: [String: Any]!
   
   public override init() {
     super.init()
@@ -31,6 +30,7 @@ public class RPListener: NSObject, XCTestObservation {
       let portalURL = URL(string: portalPath),
       let projectName = bundleProperties["ReportPortalProjectName"] as? String,
       let token = bundleProperties["ReportPortalToken"] as? String,
+      let shouldFinishLaunch = bundleProperties["IsFinalTestBundle"] as? Bool,
       let launchName = bundleProperties["ReportPortalLaunchName"] as? String else
     {
       fatalError("Configure properties for report portal in the Info.plist")
@@ -46,7 +46,8 @@ public class RPListener: NSObject, XCTestObservation {
       launchName: launchName,
       shouldSendReport: shouldReport,
       portalToken: token,
-      tags: tags
+      tags: tags,
+      shouldFinishLaunch: shouldFinishLaunch
     )
   }
   
@@ -68,13 +69,22 @@ public class RPListener: NSObject, XCTestObservation {
   }
   
   public func testSuiteWillStart(_ testSuite: XCTestSuite) {
-    if !testSuite.name.contains("Selected tests"), !testSuite.name.contains(".xctest") {
-      queue.async {
-        do {
+    guard
+      !testSuite.name.contains("All tests"),
+      !testSuite.name.contains("Selected tests") else
+    {
+      return
+    }
+    
+    queue.async {
+      do {
+        if testSuite.name.contains(".xctest") {
+          try self.reportingService.startRootSuite(testSuite)
+        } else {
           try self.reportingService.startTestSuite(testSuite)
-        } catch let error {
-          print(error)
         }
+      } catch let error {
+        print(error)
       }
     }
   }
@@ -114,13 +124,22 @@ public class RPListener: NSObject, XCTestObservation {
   }
   
   public func testSuiteDidFinish(_ testSuite: XCTestSuite) {
-    if !testSuite.name.contains("Selected tests"), !testSuite.name.contains(".xctest") {
-      queue.async {
-        do {
+    guard
+      !testSuite.name.contains("All tests"),
+      !testSuite.name.contains("Selected tests") else
+    {
+      return
+    }
+    
+    queue.async {
+      do {
+        if testSuite.name.contains(".xctest") {
+          try self.reportingService.finishRootSuite()
+        } else {
           try self.reportingService.finishTestSuite()
-        } catch let error {
-          print(error)
         }
+      } catch let error {
+        print(error)
       }
     }
   }

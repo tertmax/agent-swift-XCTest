@@ -1,9 +1,8 @@
 //
 //  RPServices.swift
-//  com.oxagile.automation.RPAgentSwiftXCTest
 //
-//  Created by Sergey Komarov on 6/26/17.
-//  Copyright © 2017 Oxagile. All rights reserved.
+//  Created by Stas Kirichok on 22/08/18.
+//  Copyright © 2018 Windmill. All rights reserved.
 //
 
 import Foundation
@@ -22,6 +21,7 @@ class ReportingService {
   private var launchID: String?
   private var testSuiteStatus = TestStatus.passed
   private var launchStatus = TestStatus.passed
+  private var rootSuiteID: String?
   private var testSuiteID: String?
   private var testID = ""
   
@@ -34,12 +34,51 @@ class ReportingService {
     httpClient = HTTPClient(baseURL: baseURL)
     httpClient.setPlugins([AuthorizationPlugin(token: configuration.portalToken)])
   }
-
+  
+  private func getStoredLaunchID(completion: @escaping (String?) -> Void) throws {
+    let endPoint = GetCurrentLaunchEndPoint()
+    try httpClient.callEndPoint(endPoint) { (result: LaunchListInfo) in
+      guard let launch = result.content.first, let status = launch.status, status == "IN_PROGRESS" else {
+        completion(nil)
+        return
+      }
+      
+      completion(launch.id)
+    }
+  }
+  
   func startLaunch() throws {
-    let endPoint = StartLaunchEndPoint(launchName: configuration.launchName, tags: configuration.tags)
+    try getStoredLaunchID { (savedLaunchID: String?) in
+      guard let savedLaunchID = savedLaunchID else {
+        let endPoint = StartLaunchEndPoint(launchName: self.configuration.launchName, tags: self.configuration.tags)
+        
+        do {
+          try self.httpClient.callEndPoint(endPoint) { (result: Launch) in
+            self.launchID = result.id
+            self.semaphore.signal()
+          }
+        } catch let error {
+          print(error)
+        }
+        
+        return
+      }
+      
+      self.launchID = savedLaunchID
+      self.semaphore.signal()
+    }
     
-    try httpClient.callEndPoint(endPoint) { (result: Launch) in
-      self.launchID = result.id
+    _ = semaphore.wait(timeout: .now() + timeOutForRequestExpectation)
+  }
+  
+  func startRootSuite(_ suite: XCTestSuite) throws {
+    guard let launchID = launchID else {
+      throw ReportingServiceError.launchIdNotFound
+    }
+    
+    let endPoint = StartItemEndPoint(itemName: suite.name, launchID: launchID, type: .suite)
+    try httpClient.callEndPoint(endPoint) { (result: Item) in
+      self.rootSuiteID = result.id
       self.semaphore.signal()
     }
     _ = semaphore.wait(timeout: .now() + timeOutForRequestExpectation)
@@ -49,8 +88,11 @@ class ReportingService {
     guard let launchID = launchID else {
       throw ReportingServiceError.launchIdNotFound
     }
+    guard let rootSuiteID = rootSuiteID else {
+      throw ReportingServiceError.launchIdNotFound
+    }
     
-    let endPoint = StartItemEndPoint(itemName: suite.name, launchID: launchID, type: .suite)
+    let endPoint = StartItemEndPoint(itemName: suite.name, parentID: rootSuiteID, launchID: launchID, type: .test)
     try httpClient.callEndPoint(endPoint) { (result: Item) in
       self.testSuiteID = result.id
       self.semaphore.signal()
@@ -65,7 +107,7 @@ class ReportingService {
     guard let testSuiteID = testSuiteID else {
       throw ReportingServiceError.testSuiteIdNotFound
     }
-    let endPoint = StartItemEndPoint(itemName: test.name, parentID: testSuiteID, launchID: launchID, type: .test)
+    let endPoint = StartItemEndPoint(itemName: test.name, parentID: testSuiteID, launchID: launchID, type: .step)
     
     try httpClient.callEndPoint(endPoint) { (result: Item) in
       self.testID = result.id
@@ -108,8 +150,26 @@ class ReportingService {
     _ = semaphore.wait(timeout: .now() + timeOutForRequestExpectation)
   }
   
+  func finishRootSuite() throws {
+    guard let rootSuiteID = rootSuiteID else {
+      throw ReportingServiceError.testSuiteIdNotFound
+    }
+    let endPoint = FinishItemEndPoint(itemID: rootSuiteID, status: launchStatus)
+    try httpClient.callEndPoint(endPoint) { (result: Finish) in
+      self.semaphore.signal()
+    }
+    _ = semaphore.wait(timeout: .now() + timeOutForRequestExpectation)
+  }
+  
   func finishLaunch() throws {
-    let endPoint = FinishLaunchEndPoint(launchID: launchID!, status: launchStatus)
+    guard configuration.shouldFinishLaunch else {
+      print("skip finish till next test bundle")
+      return
+    }
+    guard let launchID = launchID else {
+      throw ReportingServiceError.launchIdNotFound
+    }
+    let endPoint = FinishLaunchEndPoint(launchID: launchID, status: launchStatus)
     try httpClient.callEndPoint(endPoint) { (result: Finish) in
       self.semaphore.signal()
     }

@@ -1,9 +1,8 @@
 //
 //  HTTPClient.swift
-//  com.oxagile.automation.RPAgentSwiftXCTest
 //
-//  Created by Sergey Komarov on 6/5/17.
-//  Copyright © 2017 Oxagile. All rights reserved.
+//  Created by Stas Kirichok on 20/08/18.
+//  Copyright © 2018 Windmill. All rights reserved.
 //
 
 import Foundation
@@ -32,7 +31,7 @@ class HTTPClient {
   
   func callEndPoint<T: Decodable>(_ endPoint: EndPoint, completion: @escaping (_ result: T) -> Void) throws {
     var url = baseURL.appendingPathComponent(endPoint.relativePath)
-
+    
     if endPoint.encoding == .url {
       var urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: false)!
       let queryItems = endPoint.parameters.map {
@@ -42,7 +41,7 @@ class HTTPClient {
       urlComponents.queryItems = queryItems
       url = urlComponents.url!
     }
-
+    
     var request = URLRequest(url: url)
     request.httpMethod = endPoint.method.rawValue
     request.cachePolicy = .reloadIgnoringCacheData
@@ -67,17 +66,22 @@ class HTTPClient {
           return
         }
         guard
-          let httpResponse = response as? HTTPURLResponse,
-          let result = try? JSONDecoder().decode(T.self, from: data) else
-        {
-          print("cannot deserialize data: \(String(describing: try? JSONSerialization.jsonObject(with: data, options: []) ))")
-          return
+          let httpResponse = response as? HTTPURLResponse else {
+            print("response not found")
+            return
         }
         
-        if httpResponse.statusCode == 200 || httpResponse.statusCode == 201 {
-          completion(result)
-        } else {
-          print("request failed with code: \(httpResponse.statusCode)")
+        do {
+          let result = try JSONDecoder().decode(T.self, from: data)
+          
+          if httpResponse.statusCode == 200 || httpResponse.statusCode == 201 {
+            completion(result)
+          } else {
+            print("request failed with code: \(httpResponse.statusCode)")
+          }
+        } catch let error {
+          print("cannot deserialize data: \(String(describing: try? JSONSerialization.jsonObject(with: data, options: []) ))")
+          print(error)
         }
       }
       task.resume()
