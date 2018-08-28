@@ -7,10 +7,10 @@ Pod::Spec.new do |s|
         This agent allows to see test results on the Report Portal - http://reportportal.io
     DESC
 
-    s.homepage         = 'https://github.com/Windmill-Smart-Solutions/RPAgentSwiftXCTest'
+    s.homepage         = 'https://github.com/Windmill-Smart-Solutions/ReportPortalAgent'
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
     s.author           = { 'DarthRumata' => 'stas.kirichok@windmill.ch' }
-    s.source           = { :git => 'https://github.com/Windmill-Smart-Solutions/RPAgentSwiftXCTest.git', :tag => s.version.to_s }
+    s.source           = { :git => 'https://github.com/Windmill-Smart-Solutions/ReportPortalAgent.git', :tag => s.version.to_s }
 
     s.ios.deployment_target = '10.3'
     s.tvos.deployment_target = '10.3'
