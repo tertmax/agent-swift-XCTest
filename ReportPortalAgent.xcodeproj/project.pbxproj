@@ -20,6 +20,7 @@
 		9203A3BB2136B21F00BFAF82 /* SummatorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203A3BA2136B21F00BFAF82 /* SummatorService.swift */; };
 		9203A3BE2136E2CA00BFAF82 /* ReportPortalAgent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 368751A51F5866CA0021B74D /* ReportPortalAgent.framework */; };
 		9203A3C12136E2D800BFAF82 /* ReportPortalAgent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 368751A51F5866CA0021B74D /* ReportPortalAgent.framework */; };
+		9203A3C32137264000BFAF82 /* LaunchMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203A3C22137264000BFAF82 /* LaunchMode.swift */; };
 		92FEE06C212E925D00ADB1ED /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FEE06B212E925D00ADB1ED /* Item.swift */; };
 		92FEE06E212E926400ADB1ED /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FEE06D212E926400ADB1ED /* Launch.swift */; };
 		92FEE070212E943400ADB1ED /* Finish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FEE06F212E943400ADB1ED /* Finish.swift */; };
@@ -93,6 +94,7 @@
 		9203A3AE2135C20E00BFAF82 /* SummatorControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummatorControllerTests.swift; sourceTree = "<group>"; };
 		9203A3B02135C20E00BFAF82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9203A3BA2136B21F00BFAF82 /* SummatorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummatorService.swift; sourceTree = "<group>"; };
+		9203A3C22137264000BFAF82 /* LaunchMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchMode.swift; sourceTree = "<group>"; };
 		92FEE06B212E925D00ADB1ED /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		92FEE06D212E926400ADB1ED /* Launch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
 		92FEE06F212E943400ADB1ED /* Finish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Finish.swift; sourceTree = "<group>"; };
@@ -180,6 +182,7 @@
 				92FEE07D212ECB7900ADB1ED /* Utilities */,
 				92FEE073212EA37200ADB1ED /* TestStatus.swift */,
 				92FEE075212EA38600ADB1ED /* TestType.swift */,
+				9203A3C22137264000BFAF82 /* LaunchMode.swift */,
 				92FEE06A212E924B00ADB1ED /* Entities */,
 				368751B61F5867200021B74D /* RPListener.swift */,
 				368751B81F5867200021B74D /* ReportingService.swift */,
@@ -445,6 +448,7 @@
 				92FEE087212ECB7900ADB1ED /* TimeHelper.swift in Sources */,
 				368751BF1F5867200021B74D /* ReportingService.swift in Sources */,
 				92FEE074212EA37200ADB1ED /* TestStatus.swift in Sources */,
+				9203A3C32137264000BFAF82 /* LaunchMode.swift in Sources */,
 				92FEE06E212E926400ADB1ED /* Launch.swift in Sources */,
 				92FEE094212EEE2D00ADB1ED /* FinishItemEndPoint.swift in Sources */,
 				92FEE096212EF30700ADB1ED /* StartItemEndPoint.swift in Sources */,
@@ -760,7 +764,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = ExampleUnitTests/Info_private.plist;
+				INFOPLIST_FILE = ExampleUnitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.windmill.ExampleUnitTests;
@@ -782,7 +786,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = ExampleUnitTests/Info_private.plist;
+				INFOPLIST_FILE = ExampleUnitTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.windmill.ExampleUnitTests;
@@ -803,7 +807,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = ExampleUITests/Info_private.plist;
+				INFOPLIST_FILE = ExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.windmill.ExampleUITests;
@@ -824,7 +828,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = ExampleUITests/Info_private.plist;
+				INFOPLIST_FILE = ExampleUITests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.windmill.ExampleUITests;

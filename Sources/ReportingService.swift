@@ -50,7 +50,11 @@ class ReportingService {
   func startLaunch() throws {
     try getStoredLaunchID { (savedLaunchID: String?) in
       guard let savedLaunchID = savedLaunchID else {
-        let endPoint = StartLaunchEndPoint(launchName: self.configuration.launchName, tags: self.configuration.tags)
+        let endPoint = StartLaunchEndPoint(
+          launchName: self.configuration.launchName,
+          tags: self.configuration.tags,
+          mode: self.configuration.launchMode
+        )
         
         do {
           try self.httpClient.callEndPoint(endPoint) { (result: Launch) in

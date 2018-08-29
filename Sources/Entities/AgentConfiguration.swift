@@ -17,5 +17,6 @@ struct AgentConfiguration {
   let portalToken: String
   let tags: [String]
   let shouldFinishLaunch: Bool
+  let launchMode: LaunchMode
   
 }

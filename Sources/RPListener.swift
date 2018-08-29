@@ -39,6 +39,10 @@ public class RPListener: NSObject, XCTestObservation {
     if let tagString = bundleProperties["ReportPortalTags"] as? String {
       tags = tagString.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).components(separatedBy: ",")
     }
+    var launchMode: LaunchMode = .default
+    if let isDebug = bundleProperties["IsDebugLaunchMode"] as? Bool, isDebug == true {
+      launchMode = .debug
+    }
     
     return AgentConfiguration(
       reportPortalURL: portalURL,
@@ -47,7 +51,8 @@ public class RPListener: NSObject, XCTestObservation {
       shouldSendReport: shouldReport,
       portalToken: token,
       tags: tags,
-      shouldFinishLaunch: shouldFinishLaunch
+      shouldFinishLaunch: shouldFinishLaunch,
+      launchMode: launchMode
     )
   }
   
