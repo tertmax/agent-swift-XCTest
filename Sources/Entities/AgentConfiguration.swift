@@ -18,5 +18,6 @@ struct AgentConfiguration {
   let tags: [String]
   let shouldFinishLaunch: Bool
   let launchMode: LaunchMode
+  let testNameRules: NameRules
   
 }

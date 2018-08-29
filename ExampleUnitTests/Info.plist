@@ -34,5 +34,12 @@
 	<string>&lt;project name&gt;</string>
 	<key>IsFinalTestBundle</key>
 	<true/>
+	<key>TestNameRules</key>
+	<dict>
+		<key>StripTestSuffix</key>
+		<true/>
+		<key>WhiteSpaceOnCamelCase</key>
+		<true/>
+	</dict>
 </dict>
 </plist>

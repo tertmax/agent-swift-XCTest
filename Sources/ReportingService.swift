@@ -111,7 +111,12 @@ class ReportingService {
     guard let testSuiteID = testSuiteID else {
       throw ReportingServiceError.testSuiteIdNotFound
     }
-    let endPoint = StartItemEndPoint(itemName: test.name, parentID: testSuiteID, launchID: launchID, type: .step)
+    let endPoint = StartItemEndPoint(
+      itemName: extractTestName(from: test),
+      parentID: testSuiteID,
+      launchID: launchID,
+      type: .step
+    )
     
     try httpClient.callEndPoint(endPoint) { (result: Item) in
       self.testID = result.id
@@ -178,5 +183,42 @@ class ReportingService {
       self.semaphore.signal()
     }
     _ = semaphore.wait(timeout: .now() + timeOutForRequestExpectation)
+  }
+  
+}
+
+private extension ReportingService {
+  
+  func extractTestName(from test: XCTestCase) -> String {
+    let originName = test.name.trimmingCharacters(in: .whitespacesAndNewlines)
+    let components = originName.components(separatedBy: " ")
+    var result = components[1].replacingOccurrences(of: "]", with: "")
+    
+    if configuration.testNameRules.contains(.stripTestPrefix) {
+      result.removeFirst(4)
+    }
+    if configuration.testNameRules.contains(.whiteSpaceOnUnderscore) {
+      result = result.replacingOccurrences(of: "_", with: " ")
+    }
+    if configuration.testNameRules.contains(.whiteSpaceOnCamelCase) {
+      var insertOffset = 0
+      for index in 1..<result.count {
+        let currentIndex = result.index(result.startIndex, offsetBy: index + insertOffset)
+        let previousIndex = result.index(result.startIndex, offsetBy: index - 1 + insertOffset)
+        if String(result[previousIndex]).isLowercased && !String(result[currentIndex]).isLowercased {
+          result.insert(" ", at: previousIndex)
+          insertOffset += 1
+        }
+      }
+    }
+    
+    return result
+  }
+  
+}
+
+extension String {
+  var isLowercased: Bool {
+    return lowercased() == self
   }
 }
