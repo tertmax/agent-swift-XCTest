@@ -3,3 +3,4 @@ Pods
 *.xcuserstate
 xcuserdata
 *.DS_Store
+Info_private.plist

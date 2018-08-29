@@ -2,7 +2,7 @@
 //  EndPoint.swift
 //  com.oxagile.automation.RPAgentSwiftXCTest
 //
-//  Created by Sergey Komarov on 8/29/17.
+//  Created by Windmill Smart Solutions on 8/29/17.
 //  Copyright © 2017 Oxagile. All rights reserved.
 //
 

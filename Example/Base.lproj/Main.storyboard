@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_0" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Summator View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="SummatorViewController" customModule="Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D8I-gc-nlh">
+                                <rect key="frame" x="110.5" y="108" width="99.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1tz-Ca-5Jw">
+                                <rect key="frame" x="75" y="139" width="170" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZGV-7H-tF2">
+                                <rect key="frame" x="75" y="240" width="170" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zUj-2R-86O">
+                                <rect key="frame" x="75" y="337" width="170" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Second number" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o5g-DH-cVl">
+                                <rect key="frame" x="97.5" y="209" width="125" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PeP-uf-hqA">
+                                <rect key="frame" x="152.5" y="180" width="15" height="27"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="=" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RUF-sH-GSD">
+                                <rect key="frame" x="152" y="290" width="15" height="27"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="RUF-sH-GSD" firstAttribute="centerX" secondItem="ZGV-7H-tF2" secondAttribute="centerX" id="0WL-he-Atr"/>
+                            <constraint firstItem="ZGV-7H-tF2" firstAttribute="centerX" secondItem="o5g-DH-cVl" secondAttribute="centerX" id="7iz-T4-76f"/>
+                            <constraint firstItem="D8I-gc-nlh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="88" id="CaS-j6-fPe"/>
+                            <constraint firstItem="PeP-uf-hqA" firstAttribute="top" secondItem="1tz-Ca-5Jw" secondAttribute="bottom" constant="11" id="D55-DE-9TB"/>
+                            <constraint firstItem="o5g-DH-cVl" firstAttribute="centerX" secondItem="1tz-Ca-5Jw" secondAttribute="centerX" id="DvM-W0-gpz"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1tz-Ca-5Jw" secondAttribute="trailing" constant="75" id="Fgt-ey-kAp"/>
+                            <constraint firstItem="PeP-uf-hqA" firstAttribute="centerX" secondItem="1tz-Ca-5Jw" secondAttribute="centerX" id="Gnx-Jg-BhQ"/>
+                            <constraint firstItem="RUF-sH-GSD" firstAttribute="top" secondItem="ZGV-7H-tF2" secondAttribute="bottom" constant="20" id="HYW-CK-uWu"/>
+                            <constraint firstItem="D8I-gc-nlh" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="OXl-by-TbK"/>
+                            <constraint firstItem="1tz-Ca-5Jw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="75" id="T78-c6-HPR"/>
+                            <constraint firstItem="ZGV-7H-tF2" firstAttribute="width" secondItem="1tz-Ca-5Jw" secondAttribute="width" id="Wv8-td-DVP"/>
+                            <constraint firstItem="zUj-2R-86O" firstAttribute="centerX" secondItem="ZGV-7H-tF2" secondAttribute="centerX" id="XXE-hr-iis"/>
+                            <constraint firstItem="o5g-DH-cVl" firstAttribute="top" secondItem="1tz-Ca-5Jw" secondAttribute="bottom" constant="40" id="ZxU-Tu-Dev"/>
+                            <constraint firstItem="1tz-Ca-5Jw" firstAttribute="top" secondItem="D8I-gc-nlh" secondAttribute="bottom" constant="10" id="cvi-80-50t"/>
+                            <constraint firstItem="zUj-2R-86O" firstAttribute="width" secondItem="ZGV-7H-tF2" secondAttribute="width" id="osB-cX-Iqx"/>
+                            <constraint firstItem="zUj-2R-86O" firstAttribute="top" secondItem="RUF-sH-GSD" secondAttribute="bottom" constant="20" id="qjV-nK-tK5"/>
+                            <constraint firstItem="ZGV-7H-tF2" firstAttribute="top" secondItem="o5g-DH-cVl" secondAttribute="bottom" constant="10" id="ybG-A0-NbE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="firstField" destination="1tz-Ca-5Jw" id="cTc-be-txp"/>
+                        <outlet property="resultField" destination="zUj-2R-86O" id="gGa-d5-IcE"/>
+                        <outlet property="secondField" destination="ZGV-7H-tF2" id="Itr-c7-akQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>

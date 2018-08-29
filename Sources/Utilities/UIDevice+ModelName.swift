@@ -2,7 +2,7 @@
 //  RPConstants.swift
 //  com.oxagile.automation.RPAgentSwiftXCTest
 //
-//  Created by Sergey Komarov on 7/5/17.
+//  Created by Windmill Smart Solutions on 7/5/17.
 //  Copyright © 2017 Oxagile. All rights reserved.
 //
 
