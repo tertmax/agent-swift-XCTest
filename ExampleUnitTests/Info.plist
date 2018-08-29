@@ -36,7 +36,7 @@
 	<true/>
 	<key>TestNameRules</key>
 	<dict>
-		<key>StripTestSuffix</key>
+		<key>StripTestPrefix</key>
 		<true/>
 		<key>WhiteSpaceOnCamelCase</key>
 		<true/>

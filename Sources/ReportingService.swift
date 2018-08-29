@@ -206,7 +206,7 @@ private extension ReportingService {
         let currentIndex = result.index(result.startIndex, offsetBy: index + insertOffset)
         let previousIndex = result.index(result.startIndex, offsetBy: index - 1 + insertOffset)
         if String(result[previousIndex]).isLowercased && !String(result[currentIndex]).isLowercased {
-          result.insert(" ", at: previousIndex)
+          result.insert(" ", at: currentIndex)
           insertOffset += 1
         }
       }
