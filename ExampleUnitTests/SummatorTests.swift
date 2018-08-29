@@ -3,7 +3,7 @@
 //  ExampleTests
 //
 //  Created by Stas Kirichok on 28-08-2018.
-//  Copyright © 2018 Sergey Komarov. All rights reserved.
+//  Copyright © 2018 Windmill Smart Solutions. All rights reserved.
 //
 
 import XCTest

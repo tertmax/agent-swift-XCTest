@@ -38,7 +38,8 @@ Example:
 ## Authors
 
 DarthRumata, stas.kirichok@windmill.ch (Windmill Smart Solutions)
-SergeVKom, sergvkom@gmail.com
+
+SergeVKom, sergvkom@gmail.com (original library)
 
 ## License
 

@@ -1,14 +1,14 @@
 //
-//  ExampleUITests.swift
-//  ExampleUITests
+//  SummatorControllerTests.swift
+//  SummatorControllerTests
 //
 //  Created by Stas Kirichok on 28-08-2018.
-//  Copyright © 2018 Sergey Komarov. All rights reserved.
+//  Copyright © 2018 Windmill. All rights reserved.
 //
 
 import XCTest
 
-class ExampleUITests: XCTestCase {
+class SummatorControllerTests: XCTestCase {
   
   private let app = XCUIApplication()
         

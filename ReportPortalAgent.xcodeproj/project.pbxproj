@@ -11,13 +11,15 @@
 		368751BF1F5867200021B74D /* ReportingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368751B81F5867200021B74D /* ReportingService.swift */; };
 		9203A3872135882F00BFAF82 /* GetCurrentLaunchEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203A3862135882F00BFAF82 /* GetCurrentLaunchEndPoint.swift */; };
 		9203A38F2135C20C00BFAF82 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203A38E2135C20C00BFAF82 /* AppDelegate.swift */; };
-		9203A3912135C20C00BFAF82 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203A3902135C20C00BFAF82 /* ViewController.swift */; };
+		9203A3912135C20C00BFAF82 /* SummatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203A3902135C20C00BFAF82 /* SummatorViewController.swift */; };
 		9203A3942135C20C00BFAF82 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9203A3922135C20C00BFAF82 /* Main.storyboard */; };
 		9203A3962135C20E00BFAF82 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9203A3952135C20E00BFAF82 /* Assets.xcassets */; };
 		9203A3992135C20E00BFAF82 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9203A3972135C20E00BFAF82 /* LaunchScreen.storyboard */; };
 		9203A3A42135C20E00BFAF82 /* SummatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203A3A32135C20E00BFAF82 /* SummatorTests.swift */; };
-		9203A3AF2135C20E00BFAF82 /* ExampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203A3AE2135C20E00BFAF82 /* ExampleUITests.swift */; };
+		9203A3AF2135C20E00BFAF82 /* SummatorControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203A3AE2135C20E00BFAF82 /* SummatorControllerTests.swift */; };
 		9203A3BB2136B21F00BFAF82 /* SummatorService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203A3BA2136B21F00BFAF82 /* SummatorService.swift */; };
+		9203A3BE2136E2CA00BFAF82 /* ReportPortalAgent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 368751A51F5866CA0021B74D /* ReportPortalAgent.framework */; };
+		9203A3C12136E2D800BFAF82 /* ReportPortalAgent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 368751A51F5866CA0021B74D /* ReportPortalAgent.framework */; };
 		92FEE06C212E925D00ADB1ED /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FEE06B212E925D00ADB1ED /* Item.swift */; };
 		92FEE06E212E926400ADB1ED /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FEE06D212E926400ADB1ED /* Launch.swift */; };
 		92FEE070212E943400ADB1ED /* Finish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FEE06F212E943400ADB1ED /* Finish.swift */; };
@@ -52,6 +54,20 @@
 			remoteGlobalIDString = 9203A38B2135C20C00BFAF82;
 			remoteInfo = Example;
 		};
+		9203A3BC2136E2C400BFAF82 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3687519C1F5866CA0021B74D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 368751A41F5866CA0021B74D;
+			remoteInfo = ReportPortalAgent;
+		};
+		9203A3BF2136E2D400BFAF82 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3687519C1F5866CA0021B74D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 368751A41F5866CA0021B74D;
+			remoteInfo = ReportPortalAgent;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -65,7 +81,7 @@
 		9203A3862135882F00BFAF82 /* GetCurrentLaunchEndPoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetCurrentLaunchEndPoint.swift; sourceTree = "<group>"; };
 		9203A38C2135C20C00BFAF82 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9203A38E2135C20C00BFAF82 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9203A3902135C20C00BFAF82 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9203A3902135C20C00BFAF82 /* SummatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummatorViewController.swift; sourceTree = "<group>"; };
 		9203A3932135C20C00BFAF82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9203A3952135C20E00BFAF82 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9203A3982135C20E00BFAF82 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -74,7 +90,7 @@
 		9203A3A32135C20E00BFAF82 /* SummatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummatorTests.swift; sourceTree = "<group>"; };
 		9203A3A52135C20E00BFAF82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9203A3AA2135C20E00BFAF82 /* ExampleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9203A3AE2135C20E00BFAF82 /* ExampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleUITests.swift; sourceTree = "<group>"; };
+		9203A3AE2135C20E00BFAF82 /* SummatorControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummatorControllerTests.swift; sourceTree = "<group>"; };
 		9203A3B02135C20E00BFAF82 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9203A3BA2136B21F00BFAF82 /* SummatorService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummatorService.swift; sourceTree = "<group>"; };
 		92FEE06B212E925D00ADB1ED /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
@@ -116,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9203A3BE2136E2CA00BFAF82 /* ReportPortalAgent.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9203A3C12136E2D800BFAF82 /* ReportPortalAgent.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,7 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				9203A38E2135C20C00BFAF82 /* AppDelegate.swift */,
-				9203A3902135C20C00BFAF82 /* ViewController.swift */,
+				9203A3902135C20C00BFAF82 /* SummatorViewController.swift */,
 				9203A3BA2136B21F00BFAF82 /* SummatorService.swift */,
 				9203A3922135C20C00BFAF82 /* Main.storyboard */,
 				9203A3952135C20E00BFAF82 /* Assets.xcassets */,
@@ -204,7 +222,7 @@
 		9203A3AD2135C20E00BFAF82 /* ExampleUITests */ = {
 			isa = PBXGroup;
 			children = (
-				9203A3AE2135C20E00BFAF82 /* ExampleUITests.swift */,
+				9203A3AE2135C20E00BFAF82 /* SummatorControllerTests.swift */,
 				9203A3B02135C20E00BFAF82 /* Info.plist */,
 			);
 			path = ExampleUITests;
@@ -306,6 +324,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9203A3BD2136E2C400BFAF82 /* PBXTargetDependency */,
 				9203A3A12135C20E00BFAF82 /* PBXTargetDependency */,
 			);
 			name = ExampleUnitTests;
@@ -324,6 +343,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				9203A3C02136E2D400BFAF82 /* PBXTargetDependency */,
 				9203A3AC2135C20E00BFAF82 /* PBXTargetDependency */,
 			);
 			name = ExampleUITests;
@@ -449,7 +469,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9203A3912135C20C00BFAF82 /* ViewController.swift in Sources */,
+				9203A3912135C20C00BFAF82 /* SummatorViewController.swift in Sources */,
 				9203A3BB2136B21F00BFAF82 /* SummatorService.swift in Sources */,
 				9203A38F2135C20C00BFAF82 /* AppDelegate.swift in Sources */,
 			);
@@ -467,7 +487,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9203A3AF2135C20E00BFAF82 /* ExampleUITests.swift in Sources */,
+				9203A3AF2135C20E00BFAF82 /* SummatorControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,6 +503,16 @@
 			isa = PBXTargetDependency;
 			target = 9203A38B2135C20C00BFAF82 /* Example */;
 			targetProxy = 9203A3AB2135C20E00BFAF82 /* PBXContainerItemProxy */;
+		};
+		9203A3BD2136E2C400BFAF82 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 368751A41F5866CA0021B74D /* ReportPortalAgent */;
+			targetProxy = 9203A3BC2136E2C400BFAF82 /* PBXContainerItemProxy */;
+		};
+		9203A3C02136E2D400BFAF82 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 368751A41F5866CA0021B74D /* ReportPortalAgent */;
+			targetProxy = 9203A3BF2136E2D400BFAF82 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -639,7 +669,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = RPAgentSwiftXCTest/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
@@ -667,7 +697,7 @@
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = RPAgentSwiftXCTest/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
@@ -730,7 +760,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = ExampleUnitTests/Info.plist;
+				INFOPLIST_FILE = ExampleUnitTests/Info_private.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.windmill.ExampleUnitTests;
@@ -752,7 +782,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = ExampleUnitTests/Info.plist;
+				INFOPLIST_FILE = ExampleUnitTests/Info_private.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.windmill.ExampleUnitTests;
@@ -773,7 +803,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = ExampleUITests/Info.plist;
+				INFOPLIST_FILE = ExampleUITests/Info_private.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.windmill.ExampleUITests;
@@ -794,7 +824,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = ExampleUITests/Info.plist;
+				INFOPLIST_FILE = ExampleUITests/Info_private.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.windmill.ExampleUITests;
