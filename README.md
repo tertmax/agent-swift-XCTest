@@ -1,4 +1,4 @@
-# ReportPortalAgent
+# XCTest Agent for ReportPortal
 
 
 [![Version](https://img.shields.io/cocoapods/v/ReportPortalAgent.svg?style=flat)](http://cocoapods.org/pods/ReportPortalAgent)
