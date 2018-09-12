@@ -37,7 +37,7 @@ Example:
 
 ## Authors
 
-DarthRumata, stas.kirichok@windmill.ch (Windmill Smart Solutions)
+DarthRumata, stas.kirichok@windmill.ch ([Windmill Smart Solutions](https://github.com/Windmill-Smart-Solutions))
 
 SergeVKom, sergvkom@gmail.com (original library)
 
