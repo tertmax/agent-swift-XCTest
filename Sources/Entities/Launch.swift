@@ -14,6 +14,12 @@ struct Launch: Decodable {
   let status: String?
 }
 
+struct LaunchList: Decodable {
+    let uuid: String
+    let number: Int
+    let status: String?
+}
+
 struct LaunchListInfo: Decodable {
-  let content: [Launch]
+  let content: [LaunchList]
 }

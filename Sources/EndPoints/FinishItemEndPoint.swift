@@ -9,21 +9,21 @@
 import Foundation
 
 struct FinishItemEndPoint: EndPoint {
-  
+
   let method: HTTPMethod = .put
   let relativePath: String
   let parameters: [String : Any]
-  
+
   init(itemID: String, status: TestStatus) {
     relativePath = "item/\(itemID)"
     parameters = [
       "end_time": TimeHelper.currentTimeAsString(),
       "issue": [
         "comment": "",
-        "issue_type": status == .failed ? "TO_INVESTIGATE" : ""
+        "issue_type": status == .failed ? "TO_INVESTIGATE" : "PASSED"
       ],
       "status": status.rawValue
     ]
   }
-  
+
 }
