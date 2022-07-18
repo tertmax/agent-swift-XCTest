@@ -121,15 +121,18 @@ public class RPListener: NSObject, XCTestObservation {
       }
     }
   }
-  
-  public func testCase(_ testCase: XCTestCase, didFailWithDescription description: String, inFile filePath: String?, atLine lineNumber: Int) {
-    queue.async {
-      do {
-        try self.reportingService.reportError(message: "Test '\(String(describing: testCase.name)))' failed on line \(lineNumber), \(description)")
-      } catch let error {
-        print(error)
-      }
-    }
+    
+    public func testCase(_ testCase: XCTestCase, didFailWithDescription description: String, inFile filePath: String?, atLine lineNumber: Int) {
+        queue.async {
+            do {
+                try self.reportingService.reportError(
+                    message: "Test '\(String(describing: testCase.name)))' failed on line \(lineNumber), \(description)",
+                    screenshotData: XCUIScreen.main.screenshot().pngRepresentation
+                )
+            } catch let error {
+                print(error)
+            }
+        }
   }
   
   public func testCaseDidFinish(_ testCase: XCTestCase) {

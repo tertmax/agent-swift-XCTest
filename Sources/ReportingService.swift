@@ -37,16 +37,11 @@ class ReportingService {
   
   private func getStoredLaunchID(completion: @escaping (String?) -> Void) throws {
     let endPoint = GetCurrentLaunchEndPoint()
-    try httpClient.callEndPoint(endPoint) { (result: LaunchListInfo) in
-      guard let launch = result.content.first, launch.status == "IN_PROGRESS" else {
-        completion(nil)
-        return
-      }
-      
-      completion(launch.uuid)
+    try httpClient.callEndPoint(endPoint) { (result: Launch) in
+        completion(result.id)
     }
   }
-
+  
   func startLaunch() throws {
     try getStoredLaunchID { (savedLaunchID: String?) in
       guard let savedLaunchID = savedLaunchID else {
@@ -120,18 +115,22 @@ class ReportingService {
     
     try httpClient.callEndPoint(endPoint) { (result: Item) in
       self.testID = result.id
-      self.semaphore.signal()
+        self.semaphore.signal()
     }
-    _ = semaphore.wait(timeout: .now() + timeOutForRequestExpectation)
+      _ = semaphore.wait(timeout: .now() + timeOutForRequestExpectation)
   }
-  
-  func reportError(message: String) throws {
-    let endPoint = PostLogEndPoint(itemID: testID, level: "error", message: message)
-    try httpClient.callEndPoint(endPoint) { (result: Item) in
-      self.semaphore.signal()
+    
+    func reportError(message: String, screenshotData: Data?) throws {
+        guard let launchID = launchID else {
+            throw ReportingServiceError.launchIdNotFound
+        }
+
+        let endPoint = PostLogEndPoint(itemID: testID, launchUuid: launchID, level: "error", message: message, data: screenshotData)
+        try httpClient.callEndPoint(endPoint) { (result: Item) in
+            self.semaphore.signal()
+        }
+        _ = semaphore.wait(timeout: .now() + timeOutForRequestExpectation)
     }
-    _ = semaphore.wait(timeout: .now() + timeOutForRequestExpectation)
-  }
   
   func finishTest(_ test: XCTestCase) throws {
     let testStatus = test.testRun!.hasSucceeded ? TestStatus.passed : TestStatus.failed

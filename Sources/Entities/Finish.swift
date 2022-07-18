@@ -8,17 +8,7 @@
 
 import Foundation
 
-enum FinishKeys: String, CodingKey {
-  case msg = "msg"
-}
-
-
 struct Finish: Decodable {
-  let message: String
-}
-
-struct LaunchFinish: Decodable {
-    let id: String
-    let link: String
-    let number: Int
+    
+  let message: String?
 }
