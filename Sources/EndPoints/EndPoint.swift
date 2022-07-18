@@ -19,20 +19,22 @@ enum HTTPMethod: String {
 }
 
 protocol EndPoint {
-
-  var headers: [String: String] { get }
-  var encoding: ParameterEncoding { get }
-  var method: HTTPMethod { get }
-  var relativePath: String { get }
-  var parameters: [String: Any] { get }
-
+    
+    var headers: [String: String] { get }
+    var encoding: ParameterEncoding { get }
+    var method: HTTPMethod { get }
+    var relativePath: String { get }
+    var parameters: [String: Any] { get }
+    var uploadData: Data? { get }
+    
 }
 
 extension EndPoint {
-
+  
   var headers: [String: String] { return [:] }
   var encoding: ParameterEncoding { return .json }
   var method: HTTPMethod { return .get }
   var parameters: [String: Any] { return [:] }
-
+    var uploadData: Data? { return nil }
+  
 }

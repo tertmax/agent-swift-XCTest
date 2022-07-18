@@ -74,7 +74,6 @@
 
 /* Begin PBXFileReference section */
 		368751A51F5866CA0021B74D /* ReportPortalAgent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ReportPortalAgent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		368751A91F5866CA0021B74D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		368751B61F5867200021B74D /* RPListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPListener.swift; sourceTree = "<group>"; };
 		368751B81F5867200021B74D /* ReportingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportingService.swift; sourceTree = "<group>"; };
 		368751E01F5964AA0021B74D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -188,7 +187,6 @@
 				92FEE06A212E924B00ADB1ED /* Entities */,
 				368751B61F5867200021B74D /* RPListener.swift */,
 				368751B81F5867200021B74D /* ReportingService.swift */,
-				368751A91F5866CA0021B74D /* Info.plist */,
 			);
 			path = Sources;
 			sourceTree = "<group>";

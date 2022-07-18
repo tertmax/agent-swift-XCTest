@@ -8,15 +8,18 @@
 import Foundation
 
 struct GetCurrentLaunchEndPoint: EndPoint {
-
-  let encoding: ParameterEncoding = .url
-  let relativePath: String = "launch/latest"
+  
+  let encoding: ParameterEncoding = .json
+  let relativePath: String = "launch"
   let parameters: [String : Any]
-
+    let method: HTTPMethod = .post
+  
   init() {
     parameters = [
-      "page.sort": "startTime"
+        "name": "ios",
+        "description": "My first launch on RP",
+        "startTime": TimeHelper.currentTimeAsString(),
+        "mode": "DEFAULT"
     ]
   }
-
 }
