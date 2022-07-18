@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
     s.homepage         = 'https://github.com/Windmill-Smart-Solutions/ReportPortalAgent'
     s.license          = { :type => 'MIT', :file => 'LICENSE' }
     s.author           = { 'DarthRumata' => 'stas.kirichok@windmill.ch' }
-    s.source           = { :git => 'https://github.com/Windmill-Smart-Solutions/ReportPortalAgent.git', :tag => s.version.to_s }
+    s.source           = { :git => 'https://github.com/tertmax/agent-swift-XCTest', :tag => s.version.to_s }
 
     s.ios.deployment_target = '10.3'
     s.tvos.deployment_target = '10.3'
